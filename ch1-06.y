@@ -1,5 +1,9 @@
 %{
 #include <stdio.h>
+
+void yyerror(char *s);
+int yylex();
+
 /* we found the following required for some yacc implementations. */
 /* #define YYSTYPE int */
 %}
@@ -48,8 +52,7 @@ int main()
 	}
 }
 
-yyerror(s)
-char *s;
+void yyerror(char* s)
 {
     fprintf(stderr, "%s\n", s);
 }
