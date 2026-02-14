@@ -6,7 +6,7 @@ CC = gcc -g
 LIBS = -lfl
 LEX = flex
 YACC = yacc
-CFLAGS = -DYYDEBUG=1 -Wall -Wextra -Wpedantic
+CFLAGS = -DYYDEBUG=1 -Wall -Wextra -Wpedantic -Werror -Wno-error=unused-function
 
 PROGRAMS1 = ch1-01.pgm ch1-02.pgm ch1-03.pgm ch1-04.pgm ch1-05.pgm ch1-06.pgm
 PROGRAMS2 = ch2-01.pgm ch2-02.pgm ch2-03.pgm ch2-04.pgm ch2-05.pgm \
