@@ -3,6 +3,9 @@
  * A lexer for the basic grammar to use for recognizing english sentences.
  */
 #include <stdio.h>
+
+void yyerror(char *s);
+int yylex();
 %}
 
 %token NOUN PRONOUN VERB ADVERB ADJECTIVE PREPOSITION CONJUNCTION
@@ -28,8 +31,7 @@ int main()
 	}
 }
 
-yyerror(s)
-char *s;
+void yyerror(char *s)
 {
     fprintf(stderr, "%s\n", s);
 }
