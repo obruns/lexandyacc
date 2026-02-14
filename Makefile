@@ -3,10 +3,12 @@
 # make and run all the example programs for
 # lex & yacc, Second Edition
 CC = gcc -g
+CXX = g++
 LIBS = -lfl
 LEX = flex
 YACC = yacc
 CFLAGS = -DYYDEBUG=1 -Wall -Wextra -Wpedantic -Werror -Wno-error=unused-function
+CXXFLAGS = ${CFLAGS} -std=c++23
 
 PROGRAMS1 = ch1-01.pgm ch1-02.pgm ch1-03.pgm ch1-04.pgm ch1-05.pgm ch1-06.pgm
 PROGRAMS2 = ch2-01.pgm ch2-02.pgm ch2-03.pgm ch2-04.pgm ch2-05.pgm \
@@ -134,7 +136,12 @@ sql2.c sql2.h:	sql2.y
 scn2.o:	sql2.h scn2.c
 
 
-.SUFFIXES:	.pgm .l .y
+.SUFFIXES:	.cgm .pgm .l .ll .y
+
+.ll.cgm:
+	${LEX} --c++ $<
+	mv lex.yy.cc $*.cpp
+	${CXX} ${CXXFLAGS} -o $@ $*.cpp ${LIBS}
 
 .l.pgm:
 	${LEX} $<
