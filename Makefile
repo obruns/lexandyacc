@@ -6,7 +6,7 @@ CC = gcc -g
 LIBS = -lfl
 LEX = flex
 YACC = yacc
-CFLAGS = -DYYDEBUG=1
+CFLAGS = -DYYDEBUG=1 -Wall -Wextra -Wpedantic
 
 PROGRAMS1 = ch1-01.pgm ch1-02.pgm ch1-03.pgm ch1-04.pgm ch1-05.pgm ch1-06.pgm
 PROGRAMS2 = ch2-01.pgm ch2-02.pgm ch2-03.pgm ch2-04.pgm ch2-05.pgm \
@@ -34,7 +34,7 @@ progs.tar:
 # Chapter 1
 
 ch1-05.pgm: ch1-05l.o ch1-05y.o
-	${CC} -o ch1-05.pgm ch1-05l.o ch1-05y.o ${LIBS}
+	${CC} ${CFLAGS} -o ch1-05.pgm ch1-05l.o ch1-05y.o ${LIBS}
 
 ch1-05l.c:	ch1-05.l
 	${LEX} ch1-05.l
@@ -48,7 +48,7 @@ ch1-05y.h ch1-05y.c:	ch1-05.y
 	mv y.tab.h ch1-05y.h
 
 ch1-06.pgm: ch1-06l.o ch1-06y.o
-	${CC} -o ch1-06.pgm ch1-06l.o ch1-06y.o ${LIBS}
+	${CC} ${CFLAGS} -o ch1-06.pgm ch1-06l.o ch1-06y.o ${LIBS}
 
 ch1-06l.c:	ch1-06.l
 	${LEX} ch1-06.l
@@ -94,7 +94,7 @@ ch3-05.pgm: ch3-05.l ch3-05.y ch3hdr2.h
 # chapter 4
 
 mgl:	subr.o mglyac.o mgllex.o
-	${CC} -o $@ subr.o mglyac.o mgllex.o ${LIBS}
+	${CC} ${CFLAGS} -o $@ subr.o mglyac.o mgllex.o ${LIBS}
 
 subr.o:	subr.c mglyac.h mgl-code
 
@@ -112,7 +112,7 @@ mglyac.c mglyac.h:	mglyac.y
 # chapter 5
 
 sql1:	sql1.o scn1.o
-	${CC} -o $@ sql1.o scn1.o
+	${CC} ${CFLAGS} -o $@ sql1.o scn1.o
 
 sql1.c sql1.h:	sql1.y
 	${YACC} -vd sql1.y
@@ -123,7 +123,7 @@ sql1.c sql1.h:	sql1.y
 scn1.o:	sql1.h scn1.c
 
 sql2:	sql2.o scn2.o sqltext.o
-	${CC} -o $@ sql2.o scn2.o sqltext.o
+	${CC} ${CFLAGS} -o $@ sql2.o scn2.o sqltext.o
 
 sql2.c sql2.h:	sql2.y
 	${YACC} -vd sql2.y
@@ -139,4 +139,4 @@ scn2.o:	sql2.h scn2.c
 .l.pgm:
 	${LEX} $<
 	mv lex.yy.c $*.c
-	${CC} -o $@ $*.c ${LIBS}
+	${CC} ${CFLAGS} -o $@ $*.c ${LIBS}
