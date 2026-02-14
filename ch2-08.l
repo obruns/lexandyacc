@@ -10,7 +10,7 @@ magic		BEGIN MAGIC;
 <MAGIC>.+ 	{ BEGIN 0; printf("Magic:"); ECHO; }
 %%
 
-main()
+int main()
 {
 	yylex();
 }

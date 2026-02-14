@@ -21,7 +21,7 @@ object:		NOUN
 
 extern FILE *yyin;
 
-main()
+int main()
 {
 	while(!feof(yyin)) {
 		yyparse();

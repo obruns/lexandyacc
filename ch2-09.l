@@ -24,7 +24,7 @@ int comments, code, whiteSpace;
 
 .			; /* ignore everything else */
 %%
-main()
+int main()
 {
 	yylex();
 	printf("code: %d, comments %d, white space %d\n",

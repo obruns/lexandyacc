@@ -9,7 +9,7 @@ eol  \n
 {eol}	{ charCount++; lineCount++; }
 .	charCount++;
 %%
-main(argc,argv)
+int main(argc,argv)
 int argc;
 char **argv;
 {

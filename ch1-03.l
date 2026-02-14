@@ -74,7 +74,7 @@ they		{ printf("%s: in a pronoun\n", yytext); }
 
 %%
 
-main()
+int main()
 {
 	yylex();
 }

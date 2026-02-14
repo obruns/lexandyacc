@@ -79,7 +79,7 @@ double (*func)();
 	sp->funcptr = func;
 }
 
-main()
+int main()
 {
 	extern double sqrt(), exp(), log();
 

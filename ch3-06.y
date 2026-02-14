@@ -1,5 +1,5 @@
 %%
-main()
+int main()
 {
 	extern double sqrt(), exp(), log();
 

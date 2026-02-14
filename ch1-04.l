@@ -54,7 +54,7 @@ int lookup_word(char *word);
 .	/* ignore anything else */ ;
 
 %%
-main()
+int main()
 {
 	yylex();
 }

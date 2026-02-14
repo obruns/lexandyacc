@@ -41,7 +41,7 @@ prep_phrase:	PREPOSITION NOUN
 
 extern FILE *yyin;
 
-main()
+int main()
 {
 	while(!feof(yyin)) {
 		yyparse();

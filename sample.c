@@ -2,7 +2,7 @@
  * sample source code
  */
 
-main()	/* main program */
+int main()	/* main program */
 {
 	int a,b,c;
 	

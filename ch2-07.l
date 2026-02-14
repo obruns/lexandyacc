@@ -6,7 +6,7 @@ magic		BEGIN MAGIC;
 .+		ECHO;
 %%
 
-main()
+int main()
 {
 	yylex();
 }

@@ -33,7 +33,7 @@ int myinput(char *buf, int max);
 char **targv;	/* remembers arguments */
 char **arglim;	/* end of arguments */
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	progName = *argv;
 	targv = argv+1;

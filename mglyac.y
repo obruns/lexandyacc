@@ -112,7 +112,7 @@ int lineno = 1;
 
 char *usage = "%s: usage [infile] [outfile]\n";
 
-main(int argc, char **argv)
+int main(int argc, char **argv)
 {
 	char *outfile;
 	char *infile;

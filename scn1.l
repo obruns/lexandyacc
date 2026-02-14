@@ -162,7 +162,7 @@ yyerror(char *s)
 	printf("%d: %s at %s\n", lineno, s, yytext);
 }
 
-main(int ac, char **av)
+int main(int ac, char **av)
 {
 	if(ac > 1 && (yyin = fopen(av[1], "r")) == NULL) {
 		perror(av[1]);

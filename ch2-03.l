@@ -27,7 +27,7 @@ unsigned long totalCC = 0;
 unsigned long totalWC = 0;
 unsigned long totalLC = 0;
 
-main(argc,argv)
+int main(argc,argv)
 int argc;
 char **argv;
 {
