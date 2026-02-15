@@ -1,0 +1,10 @@
+verb is am are was were be being been do
+conj and or but
+prep the them their
+pron he she it
+adj slow fast
+noun dog cat horse cow
+verb chew eat lick
+verb run stand sleep
+verb talk
+dog is cat and horse is dog.
