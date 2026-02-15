@@ -1,3 +1,4 @@
+%option noinput nounput
 %{
 unsigned verbose;
 unsigned fname;
@@ -8,6 +9,7 @@ int myinput(char *buf, int max);
 #define YY_INPUT(buf,result,max) (result = myinput(buf,max))
 %}
 
+  /* creates a new start state to the lexer */
 %s FNAME
 
 %%
