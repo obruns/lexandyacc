@@ -3,7 +3,7 @@
  * We now build a lexical analyzer to be used by a higher-level parser.
  */
 
-#include "ch1-05y.h"	/* token codes from the parser */
+#include "ch1-05y.tab.h"	/* token codes from the parser */
 
 #define LOOKUP 0 /* default - not a defined word type. */
 
