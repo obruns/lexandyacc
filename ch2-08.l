@@ -1,3 +1,4 @@
+%option noinput nounput
 %{
 	/* This example deliberately doesn't work! */
 %}
