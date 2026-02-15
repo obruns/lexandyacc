@@ -1,3 +1,4 @@
+%option noinput nounput
 %{
 unsigned verbose;
 char *progName;
@@ -15,9 +16,7 @@ char *progName;
 
 %%
 
-int main(argc, argv)
-int argc;
-char **argv;
+int main(__attribute__((unused)) int argc, char **argv)
 {
 	progName = *argv;
 	yylex();
