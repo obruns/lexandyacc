@@ -1,3 +1,4 @@
+%option noinput nounput
 %{
 unsigned verbose;
 char *progName;
