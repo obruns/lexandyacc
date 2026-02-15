@@ -26,6 +26,7 @@ extern FILE *yyin;
 
 int main()
 {
+	yyin = stdin;
 	while(!feof(yyin)) {
 		yyparse();
 	}
