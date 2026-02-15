@@ -1,15 +1,20 @@
+  // definition section
 %{
 unsigned charCount = 0, wordCount = 0, lineCount = 0;
 %}
 %option noinput nounput
 
+  // definitions
 word [^ \t\n]+
 eol  \n
 %%
+  /* rules section */
 {word}	{ wordCount++; charCount += yyleng; }
+  /* yyleng contains the lenght of the string our lexer recognized */
 {eol}	{ charCount++; lineCount++; }
 .	charCount++;
 %%
+  /* user subroutines section */
 int main(argc,argv)
 int argc;
 char **argv;
@@ -26,6 +31,6 @@ char **argv;
 		yyin = file;
 	}
 	yylex();
-	printf("%d %d %d\n",charCount, wordCount, lineCount);
+	printf(" %d  %d %d %s\n", lineCount, wordCount, charCount, argc > 1 ? argv[1] : "");
 	return 0;
 }
