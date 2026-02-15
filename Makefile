@@ -39,8 +39,7 @@ ch1-05.pgm: ch1-05l.o ch1-05y.tab.o
 	${CC} ${CFLAGS} -o ch1-05.pgm ch1-05l.o ch1-05y.tab.o ${LIBS}
 
 ch1-05l.c:	ch1-05.l
-	${LEX} ch1-05.l
-	mv lex.yy.c ch1-05l.c
+	${LEX} --outfile=$*.c ch1-05.l
 
 ch1-05l.o:	ch1-05l.c ch1-05y.tab.h
 
@@ -51,8 +50,7 @@ ch1-06.pgm: ch1-06l.o ch1-06y.tab.o
 	${CC} ${CFLAGS} -o ch1-06.pgm ch1-06l.o ch1-06y.tab.o ${LIBS}
 
 ch1-06l.c:	ch1-06.l
-	${LEX} ch1-06.l
-	mv lex.yy.c ch1-06l.c
+	${LEX} --outfile=$*.c ch1-06.l
 
 ch1-06l.o:	ch1-06l.c ch1-06y.tab.h
 
