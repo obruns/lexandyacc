@@ -8,6 +8,7 @@ set -x
 ./ch2-01.pgm <<EOF
 integer 123
 negative integer -456
+positive integer +789
 float 0.0
 signed float -4.5
 just decimal point .31415
