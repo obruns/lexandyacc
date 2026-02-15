@@ -135,11 +135,9 @@ scn2.o:	sql2.h scn2.c
 .SUFFIXES:	.cgm .pgm .l .ll .y
 
 .ll.cgm:
-	${LEX} --c++ $<
-	mv lex.yy.cc $*.cpp
-	${CXX} ${CXXFLAGS} -o $@ $*.cpp ${LIBS}
+	${LEX} --c++ --outfile $*.yy.cpp $<
+	${CXX} ${CXXFLAGS} -o $@ $*.yy.cpp ${LIBS}
 
 .l.pgm:
-	${LEX} $<
-	mv lex.yy.c $*.c
-	${CC} ${CFLAGS} -o $@ $*.c ${LIBS}
+	${LEX} --outfile $*.yy.c $<
+	${CC} ${CFLAGS} -o $@ $*.yy.c ${LIBS}
