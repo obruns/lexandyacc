@@ -1,5 +1,9 @@
+%option noinput nounput
 %{
-#include "y.tab.h"
+#include "ch3-01.tab.h"
+
+void yyerror(char *s);
+int yylex();
 extern int yylval;
 %}
 
@@ -9,3 +13,8 @@ extern int yylval;
 \n	return 0;	/* logical EOF */
 .	return yytext[0];
 %%
+
+void yyerror(char *s)
+{
+    fprintf(stderr, "%s\n", s);
+}
