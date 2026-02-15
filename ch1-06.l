@@ -12,6 +12,7 @@ int state;
 int add_word(int type, char *word);
 int lookup_word(char *word);
 %}
+%option noinput nounput
 
 %%
 

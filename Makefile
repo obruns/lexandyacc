@@ -7,7 +7,7 @@ CXX = g++
 LIBS = -lfl
 LEX = flex
 YACC = bison
-CFLAGS = -DYYDEBUG=1 -Wall -Wextra -Wpedantic -Werror -Wno-error=unused-function
+CFLAGS = -DYYDEBUG=1 -Wall -Wextra -Wpedantic -Werror
 CXXFLAGS = ${CFLAGS} -std=c++23
 
 PROGRAMS1 = ch1-01.pgm ch1-02.pgm ch1-03.pgm ch1-04.pgm ch1-05.pgm ch1-06.pgm

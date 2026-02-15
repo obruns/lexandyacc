@@ -5,6 +5,7 @@
  */
 
 %}
+%option noinput nounput
 %%
 
 [\t ]+		/* ignore white space */ ;

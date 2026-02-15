@@ -1,3 +1,4 @@
+%option noinput nounput
 %%
 [\n\t ]	;
 

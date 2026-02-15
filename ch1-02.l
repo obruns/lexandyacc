@@ -10,6 +10,7 @@
  */
 
 %}
+%option noinput nounput
 %%
   // the `rules section`
   // pattern<whitespace>action
