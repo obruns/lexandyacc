@@ -1,0 +1,7 @@
+*.cgm
+*.pgm
+*l.c
+*y.c
+*y.h
+*.tab.c
+*.tab.h
