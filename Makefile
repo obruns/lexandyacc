@@ -62,30 +62,14 @@ ch1-06y.tab.h ch1-06y.tab.c:	ch1-06.y
 
 # Chapter 3
 
-ch3-01.pgm: ch3-01.l ch3-01.y
-	${LEX} ch3-01.l
-	${YACC} -d ch3-01.y
-	${CC} ${CFLAGS} -o ch3-01.pgm y.tab.c lex.yy.c ${LIBS}
+%.yy.c: %.l
+	${LEX} --outfile=$*.yy.c $<
 
-ch3-02.pgm: ch3-01.l ch3-02.y
-	${LEX} ch3-01.l
-	${YACC} -d ch3-02.y
-	${CC} ${CFLAGS} -o ch3-02.pgm y.tab.c lex.yy.c ${LIBS}
+%.tab.c: %.y
+	${YACC} -d $<
 
-ch3-03.pgm: ch3-03.l ch3-03.y
-	${LEX} ch3-03.l
-	${YACC} -d ch3-03.y
-	${CC} ${CFLAGS} -o ch3-03.pgm y.tab.c lex.yy.c ${LIBS}
-
-ch3-04.pgm: ch3-04.l ch3-04.y ch3hdr.h
-	${LEX} ch3-04.l
-	${YACC} -d ch3-04.y
-	${CC} ${CFLAGS} -o ch3-04.pgm y.tab.c lex.yy.c ${LIBS}
-
-ch3-05.pgm: ch3-05.l ch3-05.y ch3hdr2.h
-	${LEX} ch3-05.l
-	${YACC} -d ch3-05.y
-	${CC} ${CFLAGS} -o ch3-05.pgm y.tab.c lex.yy.c ${LIBS} -lm
+%.pgm: %.yy.c %.tab.c
+	${CC} ${CFLAGS} -o $@ $*.tab.c $*.yy.c ${LIBS}
 
 # chapter 4
 
