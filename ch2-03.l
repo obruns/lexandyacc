@@ -80,7 +80,7 @@ char **argv;
 
 int yywrap()
 {
-	FILE *file;
+	FILE *file = NULL;
 
 	if ((currentFile != 0) && (nFiles > 1) && (currentFile < nFiles)) {
 		/*
