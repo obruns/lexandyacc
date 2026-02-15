@@ -6,7 +6,7 @@ CC = gcc -g
 CXX = g++
 LIBS = -lfl
 LEX = flex
-YACC = yacc
+YACC = bison
 CFLAGS = -DYYDEBUG=1 -Wall -Wextra -Wpedantic -Werror -Wno-error=unused-function
 CXXFLAGS = ${CFLAGS} -std=c++23
 
