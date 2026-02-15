@@ -1,3 +1,4 @@
+%option noinput nounput
 %{
 /*
  * ch2-03.l
@@ -10,6 +11,7 @@ unsigned long charCount = 0, wordCount = 0, lineCount = 0;
 
 #undef yywrap	/* sometimes a macro by default */
 
+int yywrap();
 %}
 
 word [^ \t\n]+
@@ -76,7 +78,7 @@ char **argv;
  * connect to a new file, as we do in this case.)
  */
 
-yywrap()
+int yywrap()
 {
 	FILE *file;
 
