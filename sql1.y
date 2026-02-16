@@ -1,3 +1,7 @@
+%{
+void yyerror(char *s);
+int yylex();
+%}
 	/* symbolic tokens */
 
 %union {

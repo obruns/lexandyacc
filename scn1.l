@@ -1,17 +1,16 @@
+%option noyywrap
 %{
 /*
  * AT&T lex can't handle this lexer due to lex bugs.  It works with flex
  * 2.3.7, pclex 2.0.5, and MKS lex 3.1a.
  */
 
-#include "sql1.h"
+#include "sql1.tab.h"
 #include <string.h>
 
 int lineno = 1;
 void yyerror(char *s);
 %}
-	/* MKS needs the next line to increase the NFA table */
-%e 1200
 
 %%
 

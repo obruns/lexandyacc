@@ -87,16 +87,8 @@ subr.o: subr.c | mglyac.tab.h mgl-code
 
 # chapter 5
 
-sql1:	sql1.o scn1.o
-	${CC} ${CFLAGS} -o $@ sql1.o scn1.o
-
-sql1.c sql1.h:	sql1.y
-	${YACC} -vd sql1.y
-	mv y.tab.h sql1.h
-	mv y.tab.c sql1.c
-	mv y.output sql1.out
-
-scn1.o:	sql1.h scn1.c
+sql1: sql1.tab.o scn1.yy.o
+	${CC} ${CFLAGS} -o $@ $^
 
 sql2:	sql2.o scn2.o sqltext.o
 	${CC} ${CFLAGS} -o $@ sql2.o scn2.o sqltext.o
