@@ -10,4 +10,4 @@ struct symtab {
 	double value;
 };
 
-struct symtab *symlook();
+struct symtab *symlook(char *s);

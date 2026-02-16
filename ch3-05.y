@@ -54,8 +54,7 @@ expression:	expression '+' expression { $$ = $1 + $3; }
 %%
 /* look up a symbol table entry, add if not present */
 struct symtab *
-symlook(s)
-char *s;
+symlook(char *s)
 {
 	struct symtab *sp;
 	
@@ -75,9 +74,7 @@ char *s;
 	exit(1);	/* cannot continue */
 } /* symlook */
 
-void addfunc(name, func)
-char *name;
-double (*func)();
+void addfunc(char *name, double (*func)(double))
 {
 	struct symtab *sp = symlook(name);
 	sp->funcptr = func;

@@ -29,9 +29,7 @@ unsigned long totalCC = 0;
 unsigned long totalWC = 0;
 unsigned long totalLC = 0;
 
-int main(argc,argv)
-int argc;
-char **argv;
+int main(int argc, char **argv)
 {
         FILE *file;
 

@@ -15,9 +15,7 @@ eol  \n
 .	charCount++;
 %%
   /* user subroutines section */
-int main(argc,argv)
-int argc;
-char **argv;
+int main(int argc, char **argv)
 {
 
 	if (argc > 1) {

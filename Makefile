@@ -2,12 +2,12 @@
 
 # make and run all the example programs for
 # lex & yacc, Second Edition
-CC = gcc -g
-CXX = g++
+include compiler.make
+DEBUGFLAGS ?= -g -DYYDEBUG=1
 LIBS = -lfl
 LEX = flex
 YACC = bison
-CFLAGS = -DYYDEBUG=1 -Wall -Wextra -Wpedantic -Werror
+CFLAGS = ${DEBUGFLAGS} -D_POSIX_C_SOURCE -std=c23 -Wall -Wextra -Wpedantic -Werror
 CXXFLAGS = ${CFLAGS} -std=c++23
 
 PROGRAMS1 = ch1-01.pgm ch1-02.pgm ch1-03.pgm ch1-04.pgm ch1-05.pgm ch1-06.pgm
@@ -71,11 +71,11 @@ ch1-06y.tab.h ch1-06y.tab.c:	ch1-06.y
 %.tab.c %.tab.h: %.y
 	${YACC} -Werror -d $<
 
-%.pgm: %.yy.c %.tab.c %.tab.h
-	${CC} ${CFLAGS} -o $@ $*.tab.c $*.yy.c ${LIBS}
+%.pgm: %.tab.o %.yy.o | %.tab.h
+	${CC} ${CFLAGS} -o $@ $^ ${LIBS}
 
 # dedicated rule because we need -lm here
-ch3-05.pgm: ch3-05.tab.c ch3-05.tab.h ch3-05.yy.c
+ch3-05.pgm: ch3-05.tab.o ch3-05.yy.o | ch3-05.tab.h
 	${CC} ${CFLAGS} -o $@ $^ ${LIBS} -lm
 
 # chapter 4
@@ -125,3 +125,7 @@ scn2.o:	sql2.h scn2.c
 
 %.pgm: %.yy.c
 	${CC} ${CFLAGS} -o $@ $*.yy.c ${LIBS}
+
+compiler.make:
+	echo "CC ?= $(CC)" > $@
+	echo "CXX ?= $(CXX)" > $@

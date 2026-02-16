@@ -16,7 +16,7 @@ char *progName;
 
 %%
 
-int main(__attribute__((unused)) int argc, char **argv)
+int main(int, char **argv)
 {
 	progName = *argv;
 	yylex();

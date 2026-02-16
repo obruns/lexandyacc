@@ -55,7 +55,7 @@ go		{ printf("%s: is a verb\n", yytext); }
   // `user subroutines section`
 
   // this `main()` is superfluous because -lfl has one
-int main()
+int main(int, char**)
 {
 	yylex();
 }

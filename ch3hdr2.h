@@ -7,8 +7,8 @@
 
 struct symtab {
 	char *name;
-	double (*funcptr)();
+	double (*funcptr)(double);
 	double value;
 };
 
-struct symtab *symlook();
+struct symtab *symlook(char* s);

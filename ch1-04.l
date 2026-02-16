@@ -69,8 +69,6 @@ struct word {
 
 struct word *word_list; /* first element in word list */
 
-extern void *malloc();
-
 int
 add_word(int type, char *word)
 {

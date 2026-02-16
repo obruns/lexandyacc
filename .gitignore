@@ -5,3 +5,4 @@
 *y.h
 *.tab.c
 *.tab.h
+compiler.make
