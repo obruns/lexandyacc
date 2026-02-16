@@ -2,7 +2,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+
+#include <unistd.h>  /* for unlink(2) */
+
+#include "mglyac.tab.h"
+#include "subr.h"
     
+void yyerror(char *s);
+int yylex();
+
 int screen_done = 1; /* 1 if done, 0 otherwise */
 char *act_str;   /* extra argument for an action */
 char *cmd_str;   /* extra argument for command */
@@ -172,10 +180,15 @@ int main(int argc, char **argv)
 	exit(0); /* no error */
 }
 
-warning(char *s, char *t) /* print warning message */
+void warning(char *s, char *t) /* print warning message */
 {
 	fprintf(stderr, "%s: %s", progname, s);
 	if (t)
 		fprintf(stderr, " %s", t);
 	fprintf(stderr, " line %d\n", lineno);
+}
+
+void yyerror(char *s)
+{
+    fprintf(stderr, "%s\n", s);
 }

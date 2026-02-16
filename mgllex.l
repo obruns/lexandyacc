@@ -1,6 +1,9 @@
+%option noinput nounput
 %{
-#include "mglyac.h"
+#include "mglyac.tab.h"
 #include <string.h>
+
+void warning(char *name, char *screen);
 
 extern int lineno;
 %}

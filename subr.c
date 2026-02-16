@@ -13,9 +13,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "mglyac.h"
+#include <time.h>
+#include "mglyac.tab.h"
 #include "mgl-code"              /* contains definitions of 
 				  * skeleton file to be built */
+
+#include "subr.h"
 
 extern FILE *yyin, *yyout;
 
@@ -42,8 +45,6 @@ struct item {
 /* macros */
 #define SCREEN_SIZE 80
 
-void cfree(char *);	/* free if not null */
-
 /* code */
 
 /*
@@ -55,10 +56,9 @@ void cfree(char *);	/* free if not null */
  * is seen, an appropriate error message can be given).
  */
 
-start_screen(char *name)  /* name of screen to create */
+int start_screen(char *name)  /* name of screen to create */
 {
-	long time(),tm = time((long *)0);
-	char *ctime();
+	time_t tm = time(nullptr);
 
 	if(!done_start_init)
 	{
@@ -89,8 +89,7 @@ start_screen(char *name)  /* name of screen to create */
  * add_title:
  * Add centered text to screen code.
  */
-add_title(line)
-char *line;
+void add_title(char *line)
 {
 	int length = strlen(line);
 	int space = (SCREEN_SIZE - length) / 2;
@@ -108,8 +107,7 @@ char *line;
  * of the information is in global variables.
  */
 
-add_line(action, attrib)
-int action, attrib;
+void add_line(int action, int attrib)
 {
 	struct item *new;
 
@@ -152,7 +150,7 @@ int action, attrib;
  * Finish screen, print out postamble.
  */
 
-end_screen(char *name)
+int end_screen(char *name)
 {
 
 	fprintf(yyout, "\tmenu_runtime(menu_%s_items);\n",name);
@@ -188,7 +186,7 @@ end_screen(char *name)
  * constant used for the run-time support module (which 
  * is below this table).
  */
-process_items()
+void process_items()
 {
 	int cnt = 0;
 	struct item *ptr;
@@ -235,8 +233,7 @@ process_items()
  * runtime code for the menus generated.
  */
 
-dump_data(array)
-char **array;
+void dump_data(char **array)
 {
 	while(*array)
 		fprintf(yyout, "%s\n",*array++);
@@ -247,7 +244,7 @@ char **array;
  * this routine writes out the run-time support
  */
 
-end_file()
+void end_file()
 {
 
 	dump_data(menu_runtime);
@@ -261,11 +258,10 @@ end_file()
  * easier to just set up a static array, but less flexible.
  */
 
-check_name(name)
-char *name;
+int check_name(char *name)
 {
 	static char **names = 0;
-	static name_count = 0;
+	static int name_count = 0;
 	char **ptr,*newstr;
 
 	if(!names)
