@@ -1,4 +1,9 @@
+%{
+void yyerror(char *s);
+int yylex();
+%}
 %token NAME NUMBER
+  /* specify precedence explicitly */
 %left '-' '+'
 %left '*' '/'
 %nonassoc UMINUS
@@ -23,3 +28,13 @@ expression:	expression '+' expression { $$ = $1 + $3; }
 	|	NUMBER			{ $$ = $1; }
 	;
 %%
+
+extern FILE *yyin;
+
+int main()
+{
+	yyin = stdin;
+	while(!feof(yyin)) {
+		yyparse();
+	}
+}
