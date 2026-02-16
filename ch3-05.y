@@ -1,7 +1,12 @@
 %{
 #include "ch3hdr2.h"
-#include <string.h>
 #include <math.h>
+#include <string.h>
+#include <stdlib.h>
+
+void yyerror(char *s);
+int yylex();
+struct symtab symtab[NSYMS];
 %}
 
 %union {
@@ -52,7 +57,6 @@ struct symtab *
 symlook(s)
 char *s;
 {
-	char *p;
 	struct symtab *sp;
 	
 	for(sp = symtab; sp < &symtab[NSYMS]; sp++) {
@@ -71,7 +75,7 @@ char *s;
 	exit(1);	/* cannot continue */
 } /* symlook */
 
-addfunc(name, func)
+void addfunc(name, func)
 char *name;
 double (*func)();
 {
@@ -81,10 +85,13 @@ double (*func)();
 
 int main()
 {
-	extern double sqrt(), exp(), log();
-
 	addfunc("sqrt", sqrt);
 	addfunc("exp", exp);
 	addfunc("log", log);
 	yyparse();
+}
+
+void yyerror(char *s)
+{
+    fprintf(stderr, "%s\n", s);
 }

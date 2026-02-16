@@ -74,6 +74,10 @@ ch1-06y.tab.h ch1-06y.tab.c:	ch1-06.y
 %.pgm: %.yy.c %.tab.c %.tab.h
 	${CC} ${CFLAGS} -o $@ $*.tab.c $*.yy.c ${LIBS}
 
+# dedicated rule because we need -lm here
+ch3-05.pgm: ch3-05.tab.c ch3-05.tab.h ch3-05.yy.c
+	${CC} ${CFLAGS} -o $@ $^ ${LIBS} -lm
+
 # chapter 4
 
 mgl:	subr.o mglyac.o mgllex.o
