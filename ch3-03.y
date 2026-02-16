@@ -1,4 +1,6 @@
 %{
+void yyerror(char *s);
+int yylex();
 double vbltable[26];
 %}
 
@@ -38,3 +40,18 @@ expression:	expression '+' expression { $$ = $1 + $3; }
 	|	NAME			{ $$ = vbltable[$1]; }
 	;
 %%
+
+extern FILE *yyin;
+
+int main()
+{
+	yyin = stdin;
+	while(!feof(yyin)) {
+		yyparse();
+	}
+}
+
+void yyerror(char *s)
+{
+    fprintf(stderr, "%s\n", s);
+}
