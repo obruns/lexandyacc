@@ -69,7 +69,7 @@ ch1-06y.tab.h ch1-06y.tab.c:	ch1-06.y
 	${LEX} --c++ --outfile $*.yy.cpp $<
 
 %.tab.c: %.y
-	${YACC} -d $<
+	${YACC} -Werror -d $<
 
 %.pgm: %.yy.c %.tab.c
 	${CC} ${CFLAGS} -o $@ $*.tab.c $*.yy.c ${LIBS}
