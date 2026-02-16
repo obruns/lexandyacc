@@ -1,7 +1,4 @@
 %token NAME NUMBER
-%left '-' '+'
-%left '*' '/'
-%nonassoc UMINUS
 
 %%
 
@@ -18,7 +15,7 @@ expression:	expression '+' expression { $$ = $1 + $3; }
 					else
 						$$ = $1 / $3;
 				}
-	|	'-' expression %prec UMINUS	{ $$ = -$2; }
+	|	'-' expression { $$ = -$2; }
 	|	'(' expression ')'	{ $$ = $2; }
 	|	NUMBER			{ $$ = $1; }
 	;
