@@ -2,6 +2,9 @@
 set -e -o pipefail
 set -u
 
+# page 110
+./sql1 sqlmod.sql
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO

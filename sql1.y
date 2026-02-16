@@ -375,6 +375,8 @@ opt_where_clause:
 	;
 
 	/* query expressions */
+sql:		query_exp
+	;
 
 query_exp:
 		query_term
