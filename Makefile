@@ -68,10 +68,10 @@ ch1-06y.tab.h ch1-06y.tab.c:	ch1-06.y
 %.yy.cpp: %.ll
 	${LEX} --c++ --outfile $*.yy.cpp $<
 
-%.tab.c: %.y
+%.tab.c %.tab.h: %.y
 	${YACC} -Werror -d $<
 
-%.pgm: %.yy.c %.tab.c
+%.pgm: %.yy.c %.tab.c %.tab.h
 	${CC} ${CFLAGS} -o $@ $*.tab.c $*.yy.c ${LIBS}
 
 # chapter 4
