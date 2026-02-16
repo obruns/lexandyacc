@@ -1,6 +1,11 @@
 %{
 #include "ch3hdr.h"
 #include <string.h>
+#include <stdlib.h>
+
+void yyerror(char *s);
+int yylex();
+struct symtab symtab[NSYMS];
 %}
 
 %union {
@@ -43,7 +48,6 @@ struct symtab *
 symlook(s)
 char *s;
 {
-	char *p;
 	struct symtab *sp;
 	
 	for(sp = symtab; sp < &symtab[NSYMS]; sp++) {
@@ -61,3 +65,18 @@ char *s;
 	yyerror("Too many symbols");
 	exit(1);	/* cannot continue */
 } /* symlook */
+
+extern FILE *yyin;
+
+int main()
+{
+	yyin = stdin;
+	while(!feof(yyin)) {
+		yyparse();
+	}
+}
+
+void yyerror(char *s)
+{
+    fprintf(stderr, "%s\n", s);
+}
