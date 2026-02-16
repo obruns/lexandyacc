@@ -65,6 +65,9 @@ ch1-06y.tab.h ch1-06y.tab.c:	ch1-06.y
 %.yy.c: %.l
 	${LEX} --outfile=$*.yy.c $<
 
+%.yy.cpp: %.ll
+	${LEX} --c++ --outfile $*.yy.cpp $<
+
 %.tab.c: %.y
 	${YACC} -d $<
 
@@ -113,13 +116,8 @@ sql2.c sql2.h:	sql2.y
 
 scn2.o:	sql2.h scn2.c
 
-
-.SUFFIXES:	.cgm .pgm .l .ll .y
-
-.ll.cgm:
-	${LEX} --c++ --outfile $*.yy.cpp $<
+%.cgm: %.yy.cpp
 	${CXX} ${CXXFLAGS} -o $@ $*.yy.cpp ${LIBS}
 
-.l.pgm:
-	${LEX} --outfile $*.yy.c $<
+%.pgm: %.yy.c
 	${CC} ${CFLAGS} -o $@ $*.yy.c ${LIBS}
