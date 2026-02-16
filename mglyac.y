@@ -24,7 +24,7 @@ char *item_str;  /* extra argument for
 }
 
 %token <string> QSTRING ID COMMENT 
-%token <cmd> SCREEN TITLE ITEM COMMAND ACTION EXECUTE EMPTY
+%token <cmd> XSCREEN TITLE ITEM COMMAND ACTION EXECUTE EMPTY
 %token <cmd> MENU QUIT IGNORE ATTRIBUTE VISIBLE INVISIBLE END
 
 %type <cmd> action line attribute command
@@ -41,8 +41,8 @@ screen:   screen_name screen_contents screen_terminator
         | screen_name screen_terminator
         ;
 
-screen_name: SCREEN id { start_screen($2); }
-           | SCREEN    { start_screen(strdup("default")); }
+screen_name: XSCREEN id { start_screen($2); }
+           | XSCREEN    { start_screen(strdup("default")); }
            ;
         
 screen_terminator: END id { end_screen($2); }

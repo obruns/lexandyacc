@@ -8,9 +8,10 @@ char *screen_init[] = {
 	"/* initialization information */",
 	"static int init;\n",
 	"#include <curses.h>",
+	"#include <stdlib.h>",
 	"#include <sys/signal.h>",
 	"#include <ctype.h>",
-	"#include \"mglyac.h\"\n",
+	"#include \"mglyac.tab.h\"\n",
 	"/* structure used to store menu items */",
 	"struct item {",
 	"\tchar *desc;",
@@ -20,18 +21,22 @@ char *screen_init[] = {
 	"\tint (*act_menu)();   /* call appropriate function */",
 	"\tint  attribute;",
 	"};\n",
+	"void menu_init();",
+	"void menu_cleanup(int);",
+	"int menu_runtime(struct item *items);",
+	"int casecmp(char *p, char *q);",
 	0,
 };
 
 char *menu_init[] = {
-	"menu_init()",
+	"void menu_init()",
 	"{",
-	"\tvoid menu_cleanup();\n",
+	"\tvoid menu_cleanup(int);\n",
 	"\tsignal(SIGINT, menu_cleanup);",
 	"\tinitscr();",
 	"\tcrmode();",
 	"}\n\n",
-	"menu_cleanup()",
+	"void menu_cleanup(int)",
 	"{",
 	"\tmvcur(0, COLS - 1, LINES - 1, 0);",
 	"\tendwin();",
@@ -42,11 +47,9 @@ char *menu_init[] = {
 char *menu_runtime[] = {
 "/* runtime */",
 "",
-"menu_runtime(items)",
-"struct item *items;",
+"int menu_runtime(struct item *items)",
 "{",
 "\tint visible = 0;",
-"\tint choice = 0;",
 "\tstruct item *ptr;",
 "\tchar buf[BUFSIZ];",
 "",
@@ -107,9 +110,10 @@ char *menu_runtime[] = {
 "\t\t}",
 "\t\trefresh();",
 "\t}",
+"\treturn 0;",
 "}",
 "",
-"casecmp(char *p, char *q)",
+"int casecmp(char *p, char *q)",
 "{",
 "\tint pc, qc;",
 "",
@@ -121,6 +125,15 @@ char *menu_runtime[] = {
 "\t\t\tbreak;",
 "\t}",
 "\treturn pc-qc;",
+"}",
+0
+};
+
+char* main_code[] = {
+"int main(int, char**)",
+"{",
+"\tmenu_second();",
+"\tmenu_cleanup(0);",
 "}",
 0
 };

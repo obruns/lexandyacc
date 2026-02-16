@@ -70,7 +70,7 @@ int start_screen(char *name)  /* name of screen to create */
 	if(check_name(name) == 0)
 		warning("Reuse of name",name);
 	fprintf(yyout, "/* screen %s */\n", name);
-	fprintf(yyout, "menu_%s()\n{\n",name);
+	fprintf(yyout, "int menu_%s()\n{\n",name);
 	fprintf(yyout, "\textern struct item menu_%s_items[];\n\n",name);
 	fprintf(yyout, "\tif(!init) menu_init();\n\n");
 	fprintf(yyout, "\tclear();\n\trefresh();\n");
@@ -153,7 +153,7 @@ void add_line(int action, int attrib)
 int end_screen(char *name)
 {
 
-	fprintf(yyout, "\tmenu_runtime(menu_%s_items);\n",name);
+	fprintf(yyout, "\treturn menu_runtime(menu_%s_items);\n",name);
 
 	if(strcmp(current_screen,name) != 0)
 	{
@@ -188,7 +188,7 @@ int end_screen(char *name)
  */
 void process_items()
 {
-	int cnt = 0;
+	[[maybe_unused]] int cnt = 0;
 	struct item *ptr;
 
 	if(item_list == 0)
@@ -248,6 +248,7 @@ void end_file()
 {
 
 	dump_data(menu_runtime);
+	dump_data(main_code);
 }
 
 /*

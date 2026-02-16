@@ -1,0 +1,27 @@
+include compiler.make
+DEBUGFLAGS ?= -g
+LIBS = -lfl
+LEX = flex
+YACC = bison
+CFLAGS = ${DEBUGFLAGS} -D_POSIX_C_SOURCE -std=c23 -Wall -Wextra -Wpedantic -Werror
+
+%.yy.c: %.l
+	${LEX} --outfile=$*.yy.c $<
+
+%.tab.c %.tab.h: %.y
+	${YACC} -Werror -d $<
+
+mgl: subr.o mglyac.tab.o mgllex.yy.o
+	${CC} ${CFLAGS} -o $@ $^ ${LIBS}
+
+subr.o: subr.c mglyac.tab.h mgl-code
+
+mgl-demo.c: mgl screen.mgl
+	./mgl screen.mgl $@
+
+mgl-demo: mgl-demo.c
+	${CC} ${CFLAGS} -o $@ $< ${MGL_LIBS} -lncurses -ltinfo
+
+compiler.make:
+	echo "CC ?= $(CC)" > $@
+	echo "CXX ?= $(CXX)" > $@

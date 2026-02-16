@@ -25,7 +25,7 @@ nl        \n
 	        yylval.string[yyleng-2] = '\0'; /* remove close quote */
             return QSTRING;
           }
-screen    { return SCREEN; }
+screen    { return XSCREEN; }
 title     { return TITLE; }
 item      { return ITEM; }
 command   { return COMMAND; }
