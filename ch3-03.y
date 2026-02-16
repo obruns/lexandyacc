@@ -4,6 +4,8 @@ int yylex();
 double vbltable[26];
 %}
 
+  /* define the possible symbol types */
+  /* YYSTYPE C typedef */
 %union {
 	double dval;
 	int vblno;
@@ -15,6 +17,7 @@ double vbltable[26];
 %left '*' '/'
 %nonassoc UMINUS
 
+  /* sets the type for non-terminals which otherwise need no declaration */
 %type <dval> expression
 %%
 statement_list:	statement '\n'
