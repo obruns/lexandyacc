@@ -13,6 +13,18 @@ CREATE VIEW fruits (frname, frflavor)
   WHERE Foods.thype = 'fruit';
 EOF
 
+# page 126
+./sql1 <<EOF
+GRANT SELECT, UPDATE (address, telephone)
+  ON employees TO PUBLIC;
+
+GRANT ALL ON foods TO tony, dale WITH GRANT OPTION;
+-- allows the grantees to re-grant their authority to other users
+
+GRANT REFERENCES (flavor) ON Foods TO PUBLIC;
+-- the authority needed to create a table keyed to a column in an existing table.
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO

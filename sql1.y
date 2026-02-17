@@ -140,6 +140,9 @@ opt_column_commalist:
 	|	'(' column_commalist ')'
 	;
 
+sql:	privilege_def
+	;
+
 privilege_def:
 		GRANT privileges ON table TO grantee_commalist
 		opt_with_grant_option
