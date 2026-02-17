@@ -1,0 +1,40 @@
+load("@rules_bison//bison:bison.bzl", "bison_cc_library")
+load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
+load("@rules_cc//cc:cc_library.bzl", "cc_library")
+load("@rules_flex//flex:flex.bzl", "flex_cc_library")
+
+BISON_FILES = glob(["*.y"])
+
+DEPENDENT_FLEX_FILES = [
+    "ch1-05.l",
+    "ch1-06.l",
+    "ch3-01.l",
+    "ch3-02.l",
+    "ch3-03.l",
+    "ch3-04.l",
+    "ch3-05.l",
+    "mgllex.l",
+    "scn1.l",
+    "scn2.l",
+]
+
+FLEX_FILES = glob(
+    ["*.l"],
+    exclude = DEPENDENT_FLEX_FILES,
+)
+
+[
+    bison_cc_library(
+        name = bison_file.removesuffix(".y") + "_parser",
+        src = bison_file,
+    )
+    for bison_file in BISON_FILES
+]
+
+[
+    flex_cc_library(
+        name = flex_file.removesuffix(".l") + "_lexer",
+        src = flex_file,
+    )
+    for flex_file in FLEX_FILES
+]
