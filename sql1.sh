@@ -79,6 +79,12 @@ SELECT age FROM p WHERE p.age BETWEEN 21 AND 65;
 SELECT age FROM p WHERE p.age >= 21 AND p.age <= 65;
 EOF
 
+# page 139
+./sql1 <<EOF
+SELECT * FROM q WHERE q.Name IN ( 'Tom', 'Dick', 'Harry' );
+SELECT * FROM q WHERE q.Name = 'Tom' OR q.Name = 'Dick' OR q.Name = 'Harry';
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO
