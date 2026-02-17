@@ -183,5 +183,14 @@ int main(int ac, char **av)
 /* leave SQL lexing mode */
 void un_sql()
 {
+	/* this is a macro defined as
+	  define BEGIN (yy_start) = 1 + 2 *
+	  define INITIAL 0
+	  define SQL 1
+
+	  this gets called by the parser action code
+	  from end_sql(), i.e. there is bi-directional
+	  communication between parser and lexer
+	 */
 	BEGIN INITIAL;
 } /* un_sql */
