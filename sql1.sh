@@ -60,6 +60,11 @@ EOF
 UPDATE Foods SET type = 'Fruit' WHERE flavor = 'sweet';
 EOF
 
+# page 133
+./sql1 <<EOF
+SELECT SUM( (p.age*p.age) / COUNT( p.age ) ) - AVG( p.age ) * AVG( p.age ) FROM p;
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO
