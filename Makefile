@@ -4,7 +4,7 @@
 # lex & yacc, Second Edition
 include compiler.make
 DEBUGFLAGS ?= -g -DYYDEBUG=1
-LIBS = -lfl
+LIBS =
 LEX = flex
 YACC = bison
 CFLAGS = ${DEBUGFLAGS} -D_POSIX_C_SOURCE -std=c23 -Wall -Wextra -Wpedantic -Werror

@@ -1,3 +1,4 @@
+%option noinput nounput noyywrap
 %{
 /*
  * We now build a lexical analyzer to be used by a higher-level parser.
@@ -13,7 +14,6 @@ int add_word(int type, char *word);
 int lookup_word(char *word);
 %}
 
-%option noinput nounput
 %%
 
 \n	{ state = LOOKUP; }

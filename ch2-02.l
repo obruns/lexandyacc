@@ -1,8 +1,8 @@
+%option noinput nounput noyywrap
   // definition section
 %{
 unsigned charCount = 0, wordCount = 0, lineCount = 0;
 %}
-%option noinput nounput
 
   // definitions
 word [^ \t\n]+

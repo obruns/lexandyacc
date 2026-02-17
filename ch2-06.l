@@ -1,6 +1,6 @@
   /* this example does not work with flex; use ape-06.l */
   /* see https://ftp.gnu.org/old-gnu/Manuals/flex-2.5.4/html_mono/flex.html#TOC20 */
-%option noinput nounput
+%option noinput nounput noyywrap
 %{
 #undef input
 #undef unput

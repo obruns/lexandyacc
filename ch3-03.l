@@ -1,4 +1,4 @@
-%option noinput nounput
+%option noinput nounput noyywrap
 %{
 #include "ch3-03.tab.h"
 #include <math.h>

@@ -1,4 +1,4 @@
-%option noinput nounput
+%option noinput nounput noyywrap
 %{
 #include "ch3-05.tab.h"
 #include "ch3hdr2.h"

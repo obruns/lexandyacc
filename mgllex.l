@@ -1,4 +1,4 @@
-%option noinput nounput
+%option noinput nounput noyywrap
 %{
 #include "mglyac.tab.h"
 #include <string.h>

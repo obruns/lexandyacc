@@ -1,5 +1,6 @@
-  // lex comments must be indented with whitespace
+%option noyywrap
 
+  // lex comments must be indented with whitespace
 %{
 // this section is called the `definition section`
 // any initial C program code can go here

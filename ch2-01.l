@@ -1,4 +1,4 @@
-%option noinput nounput
+%option noinput nounput noyywrap
 %%
 [\n\t ]	;
 
