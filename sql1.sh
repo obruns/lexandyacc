@@ -49,6 +49,12 @@ INSERT INTO Courses (course, flavor, sequence) VALUES
   ('dessert', 'sweet', 3);
 EOF
 
+# page 131
+./sql1 <<EOF
+DELETE FROM Foods WHERE type = sweet;
+DELETE FROM Courses WHERE sequence < 3;
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO
