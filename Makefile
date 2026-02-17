@@ -44,6 +44,10 @@ progs.tar:
 %.yy.c: %.l
 	${LEX} --outfile=$*.yy.c $<
 
+# Make sure Bison runs first
+%.yy.c: %.l | %.tab.h
+	${LEX} --outfile=$*.yy.c $<
+
 %.yy.cpp: %.ll
 	${LEX} --c++ --outfile $*.yy.cpp $<
 
