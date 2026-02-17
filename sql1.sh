@@ -25,6 +25,14 @@ GRANT REFERENCES (flavor) ON Foods TO PUBLIC;
 -- the authority needed to create a table keyed to a column in an existing table.
 EOF
 
+# page 127
+./sql1 <<EOF
+DECLARE course_cur CURSOR FOR
+  SELECT ALL
+  FROM Courses
+  ORDER BY sequence ASC;
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO

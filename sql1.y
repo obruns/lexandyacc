@@ -219,6 +219,9 @@ cursor_def_list:
 	|	cursor_def_list cursor_def
 	;
 
+sql:	cursor_def
+	;
+
 cursor_def:
 		DECLARE cursor CURSOR FOR query_exp opt_order_by_clause
 	;
@@ -399,8 +402,8 @@ query_spec:
 		SELECT opt_all_distinct selection table_exp
 	;
 
-selection:
-		scalar_exp_commalist
+selection:	%empty
+	|	scalar_exp_commalist
 	|	'*'
 	;
 
