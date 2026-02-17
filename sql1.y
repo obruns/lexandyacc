@@ -316,8 +316,13 @@ insert_statement:
 	;
 
 values_or_query_spec:
-		VALUES '(' insert_atom_commalist ')'
+		VALUES values_list
 	|	query_spec
+	;
+
+values_list: %empty
+	| '(' insert_atom_commalist ')'
+	| values_list ',' '(' insert_atom_commalist ')'
 	;
 
 insert_atom_commalist:
@@ -609,6 +614,8 @@ cursor:		NAME
 
 module:		NAME
 	;
+
+  /* parameter: MODPARAM; see page 130 */
 
 parameter:
 		':' NAME

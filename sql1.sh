@@ -33,6 +33,22 @@ DECLARE course_cur CURSOR FOR
   ORDER BY sequence ASC;
 EOF
 
+# for page 130
+# using data from page 110
+./sql1 <<EOF
+INSERT INTO Foods (name, type, flavor) VALUES
+  ('peach', 'fruit', 'sweet'),
+  ('tomato', 'fruit', 'savory'),
+  ('lemon', 'fruit', 'sour'),
+  ('lard', 'fat', 'bland'),
+  ('cheddar', 'fat', 'savory');
+
+INSERT INTO Courses (course, flavor, sequence) VALUES
+  ('salad', 'savory', 1),
+  ('main', 'savory', 2),
+  ('dessert', 'sweet', 3);
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO
