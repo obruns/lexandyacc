@@ -1,4 +1,6 @@
 %{
+#include "stdio.h"
+
 void yyerror(char *s);
 int yylex();
 %}

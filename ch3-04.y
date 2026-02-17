@@ -1,6 +1,7 @@
 %{
 #include "ch3hdr.h"
 #include <string.h>
+#include <stdio.h>
 #include <stdlib.h>
 
 void yyerror(char *s);

@@ -1,9 +1,14 @@
-load("@rules_bison//bison:bison.bzl", "bison_cc_library")
+load("@rules_bison//bison:bison.bzl", "bison")
 load("@rules_cc//cc:cc_binary.bzl", "cc_binary")
 load("@rules_cc//cc:cc_library.bzl", "cc_library")
-load("@rules_flex//flex:flex.bzl", "flex_cc_library")
+load("@rules_flex//flex:flex.bzl", "flex", "flex_cc_library")
 
 BISON_FILES = glob(["*.y"])
+
+BISON_TARGETS = [
+    bison_file.removesuffix(".y") + "_parser"
+    for bison_file in BISON_FILES
+]
 
 DEPENDENT_FLEX_FILES = [
     "ch1-05.l",
@@ -23,18 +28,80 @@ FLEX_FILES = glob(
     exclude = DEPENDENT_FLEX_FILES,
 )
 
-[
-    bison_cc_library(
-        name = bison_file.removesuffix(".y") + "_parser",
-        src = bison_file,
-    )
-    for bison_file in BISON_FILES
+FLEX_TARGETS = [
+    flex_file.removesuffix(".l") + "_lexer"
+    for flex_file in FLEX_FILES
 ]
 
+DEPENDENT_FLEX_TARGETS = [
+    flex_file.removesuffix(".l") + "_lexer"
+    for flex_file in DEPENDENT_FLEX_FILES
+]
+
+# Scanner and Parser targets.
+# Scanner code may depend on the Bison-generated header.
+# To make it available to the preprocessor, we call bison and flex
+# independently and then assemble a common cc_library().
 [
-    flex_cc_library(
-        name = flex_file.removesuffix(".l") + "_lexer",
-        src = flex_file,
+    (
+        bison(
+            name = bison_target,
+            src = bison_file,
+        ),
+        flex(
+            name = flex_target,
+            src = flex_file,
+        ),
+        cc_library(
+            name = bison_file.removesuffix(".y") + "_helper",
+            srcs = [
+                       bison_target,
+                       flex_target,
+                   ] + ([
+                       "ch3hdr.h",
+                   ] if flex_file == "ch3-04.l" else []) +
+                   ([
+                       "ch3hdr2.h",
+                   ] if flex_file == "ch3-05.l" else []) +
+                   ([
+                       "mgl-code.inc",
+                       "subr.c",
+                       "subr.h",
+                   ] if flex_file == "mgllex.l" else []) +
+                   ([
+                       "sqltext.c",
+                       "sqltext.h",
+                   ] if flex_file == "scn2.l" else []),
+            copts = ["-std=c23"] if flex_file == "mgllex.l" else [],
+            local_defines = ["_POSIX_C_SOURCE"] if flex_file == "mgllex.l" else [],
+        ),
+        cc_binary(
+            name = flex_file.removesuffix(".l"),
+            deps = [bison_file.removesuffix(".y") + "_helper"],
+        ),
     )
-    for flex_file in FLEX_FILES
+    for (bison_file, bison_target, flex_file, flex_target) in zip(
+        BISON_FILES,
+        BISON_TARGETS,
+        DEPENDENT_FLEX_FILES,
+        DEPENDENT_FLEX_TARGETS,
+    )
+]
+
+# Scanner-only targets.
+# These depend on flex only.
+[
+    (
+        flex_cc_library(
+            name = flex_target,
+            src = flex_file,
+        ),
+        cc_binary(
+            name = flex_file.removesuffix(".l"),
+            srcs = [
+                flex_target,
+            ],
+        ),
+    )
+    for (flex_file, flex_target) in zip(FLEX_FILES, FLEX_TARGETS)
 ]
