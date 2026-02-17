@@ -90,16 +90,8 @@ subr.o: subr.c | mglyac.tab.h mgl-code
 sql1: sql1.tab.o scn1.yy.o
 	${CC} ${CFLAGS} -o $@ $^
 
-sql2:	sql2.o scn2.o sqltext.o
-	${CC} ${CFLAGS} -o $@ sql2.o scn2.o sqltext.o
-
-sql2.c sql2.h:	sql2.y
-	${YACC} -vd sql2.y
-	mv y.tab.h sql2.h
-	mv y.tab.c sql2.c
-	mv y.output sql2.out
-
-scn2.o:	sql2.h scn2.c
+sql2: sql2.tab.o scn2.yy.o sqltext.o
+	${CC} ${CFLAGS} -o $@ $^
 
 %.cgm: %.yy.cpp
 	${CXX} ${CXXFLAGS} -o $@ $*.yy.cpp ${LIBS}

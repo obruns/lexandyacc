@@ -1,6 +1,8 @@
+%option noyywrap
 %{
-#include "sql2.h"
 #include <string.h>
+#include "sql2.tab.h"
+#include "sqltext.h"
 
 int lineno = 1;
 void yyerror(char *s);
@@ -179,7 +181,7 @@ int main(int ac, char **av)
 } /* main */
 
 /* leave SQL lexing mode */
-un_sql()
+void un_sql()
 {
 	BEGIN INITIAL;
 } /* un_sql */

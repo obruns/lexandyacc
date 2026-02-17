@@ -3,7 +3,11 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+#include "sqltext.h"
+
 extern FILE *yyout;	/* lex output file */
 
 char save_buf[2000];	/* buffer for SQL command */
@@ -13,14 +17,14 @@ char *savebp;		/* current buffer pointer */
 char *varnames[NPARAM];	/* parameter names */
 
 /* start an embedded command after EXEC SQL */
-start_save(void)
+void start_save(void)
 {
 
 	savebp = save_buf;
 } /* start_save */
 
 /* save a SQL token */
-save_str(char *s)
+void save_str(char *s)
 {
 
 	strcpy(savebp, s);
@@ -28,7 +32,7 @@ save_str(char *s)
 } /* save_str */
 
 /* save a parameter reference */
-save_param(char *n)
+void save_param(char *n)
 {
 	int i;
 	char pbuf[10];
@@ -59,7 +63,7 @@ save_param(char *n)
 } /* save_param */
 
 /* end of SQL command, now write it out */
-end_sql(void)
+void end_sql(void)
 {
 	int i;
 	register char *cp;

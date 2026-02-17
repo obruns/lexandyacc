@@ -1,3 +1,9 @@
+%{
+#include "sqltext.h"
+
+void yyerror(char *s);
+int yylex();
+%}
 	/* symbolic tokens */
 
 %union {
