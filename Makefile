@@ -29,7 +29,7 @@ progs.tar:
 	ch1-05.l ch1-05.y ch1-05y.h ch1-06.l ch1-06.y ch1-06y.h ch2-01.l \
 	ch2-02.l ch2-03.l ch2-04.l ch2-05.l ch2-06.l ch2-07.l ch2-08.l \
 	ch2-09.l ch3-01.l ch3-01.y ch3-02.y ch3-03.l ch3-03.y ch3-04.l \
-	ch3-04.y ch3-05.l ch3-05.y ch3-06.y ch3hdr.h ch3hdr2.h magic.input \
+	ch3-04.y ch3-05.l ch3-05.y ch3hdr.h ch3hdr2.h magic.input \
 	mgl-code mgl-in mgllex.l mglyac.y mmain.c sample.c subr.c \
 	scn1.l scn2.l sql1.y sql2.y sqltext.c
 
