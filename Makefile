@@ -45,35 +45,35 @@ progs.tar:
 	${LEX} --outfile=$*.yy.c $<
 
 # Make sure Bison runs first
-%.yy.c: %.l | %.tab.h
+%.yy.c: %.l | %_parser.h
 	${LEX} --outfile=$*.yy.c $<
 
 %.yy.cpp: %.ll
 	${LEX} --c++ --outfile $*.yy.cpp $<
 
-%.tab.c %.tab.h: %.y
-	${YACC} --language=c --report=all -Wall -Werror -Wno-error=precedence -d $<
+%_parser.c %_parser.h: %.y
+	${YACC} --language=c --output=$*_parser.c --report=all -Wall -Werror -Wno-error=precedence --defines=$*_parser.h $<
 
-%.pgm: %.tab.o %.yy.o | %.tab.h
+%.pgm: %_parser.o %.yy.o | %_parser.h
 	${CC} ${CFLAGS} -o $@ $^ ${LIBS}
 
 # dedicated rule because we need -lm here
-ch3-05.pgm: ch3-05.tab.o ch3-05.yy.o | ch3-05.tab.h
+ch3-05.pgm: ch3-05_parser.o ch3-05.yy.o | ch3-05_parser.h
 	${CC} ${CFLAGS} -o $@ $^ ${LIBS} -lm
 
 # chapter 4
 
-mgl: subr.o mglyac.tab.o mgllex.yy.o
+mgl: subr.o mglyac_parser.o mgllex.yy.o
 	${CC} ${CFLAGS} -o $@ $^ ${LIBS}
 
-subr.o: subr.c | mglyac.tab.h mgl-code
+subr.o: subr.c | mglyac_parser.h mgl-code
 
 # chapter 5
 
-sql1: sql1.tab.o scn1.yy.o
+sql1: sql1_parser.o scn1.yy.o
 	${CC} ${CFLAGS} -o $@ $^
 
-sql2: sql2.tab.o scn2.yy.o sqltext.o
+sql2: sql2_parser.o scn2.yy.o sqltext.o
 	${CC} ${CFLAGS} -o $@ $^
 
 %.cgm: %.yy.cpp

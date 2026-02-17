@@ -1,6 +1,6 @@
 %option noinput nounput noyywrap
 %{
-#include "mglyac.tab.h"
+#include "mglyac_parser.h"
 #include <string.h>
 
 void warning(char *name, char *screen);

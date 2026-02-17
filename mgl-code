@@ -11,7 +11,7 @@ char *screen_init[] = {
 	"#include <stdlib.h>",
 	"#include <sys/signal.h>",
 	"#include <ctype.h>",
-	"#include \"mglyac.tab.h\"\n",
+	"#include \"mglyac_parser.h\"\n",
 	"/* structure used to store menu items */",
 	"struct item {",
 	"\tchar *desc;",

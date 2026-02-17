@@ -1,6 +1,6 @@
 %option noinput nounput noyywrap
 %{
-#include "ch3-04.tab.h"
+#include "ch3-04_parser.h"
 #include "ch3hdr.h"
 #include <math.h>
 %}

@@ -5,7 +5,7 @@
 
 #include <unistd.h>  /* for unlink(2) */
 
-#include "mglyac.tab.h"
+#include "mglyac_parser.h"
 #include "subr.h"
     
 void yyerror(char *s);

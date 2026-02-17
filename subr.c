@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include "mglyac.tab.h"
+#include "mglyac_parser.h"
 #include "mgl-code"              /* contains definitions of 
 				  * skeleton file to be built */
 

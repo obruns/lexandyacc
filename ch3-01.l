@@ -1,6 +1,6 @@
 %option noinput nounput noyywrap
 %{
-#include "ch3-01.tab.h"
+#include "ch3-01_parser.h"
 
 void yyerror(char *s);
 int yylex();

@@ -1,7 +1,7 @@
 %option noyywrap
 %{
 #include <string.h>
-#include "sql2.tab.h"
+#include "sql2_parser.h"
 #include "sqltext.h"
 
 int lineno = 1;

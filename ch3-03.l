@@ -1,6 +1,6 @@
 %option noinput nounput noyywrap
 %{
-#include "ch3-03.tab.h"
+#include "ch3-03_parser.h"
 #include <math.h>
 extern double vbltable[26];
 %}

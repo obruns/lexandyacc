@@ -5,7 +5,7 @@
  * 2.3.7, pclex 2.0.5, and MKS lex 3.1a.
  */
 
-#include "sql1.tab.h"
+#include "sql1_parser.h"
 #include <string.h>
 
 int lineno = 1;
