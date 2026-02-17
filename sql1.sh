@@ -85,6 +85,12 @@ SELECT * FROM q WHERE q.Name IN ( 'Tom', 'Dick', 'Harry' );
 SELECT * FROM q WHERE q.Name = 'Tom' OR q.Name = 'Dick' OR q.Name = 'Harry';
 EOF
 
+# page 139
+./sql1 <<EOF
+SELECT * FROM p WHERE p.name = ALL ( SELECT q.Name FROM q );
+SELECT * FROM p WHERE p.name = ANY ( SELECT q.Name FROM q );
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO
