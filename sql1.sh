@@ -55,6 +55,11 @@ DELETE FROM Foods WHERE type = sweet;
 DELETE FROM Courses WHERE sequence < 3;
 EOF
 
+# page 131; fails, cannot explain, why
+./sql1 <<EOF
+UPDATE Foods SET type = 'Fruit' WHERE flavor = 'sweet';
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO
