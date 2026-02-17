@@ -65,6 +65,14 @@ EOF
 SELECT SUM( (p.age*p.age) / COUNT( p.age ) ) - AVG( p.age ) * AVG( p.age ) FROM p;
 EOF
 
+# page 135
+./sql1 <<EOF
+SELECT supplier
+FROM p
+GROUP BY supplier
+HAVING COUNT(*) >= 3;
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO
