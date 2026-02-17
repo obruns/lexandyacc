@@ -91,18 +91,10 @@ SELECT * FROM p WHERE p.name = ALL ( SELECT q.Name FROM q );
 SELECT * FROM p WHERE p.name = ANY ( SELECT q.Name FROM q );
 EOF
 
-# page 140
+# page 140; not sure how this is supposed to look like
 ./sql1 <<EOF
 FETCH foo INTO
 :a ,
 b c, -- two names are legal
 d e f--but three aren't
 EOF
-
-# page 90
-#./sql1 <<EOF
-#EOF
-
-# page 98
-#./sql1 <<EOF
-#EOF
