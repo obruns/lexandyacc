@@ -30,7 +30,7 @@ progs.tar:
 	ch2-02.l ch2-03.l ch2-04.l ch2-05.l ch2-06.l ch2-07.l ch2-08.l \
 	ch2-09.l ch3-01.l ch3-01.y ch3-02.y ch3-03.l ch3-03.y ch3-04.l \
 	ch3-04.y ch3-05.l ch3-05.y ch3hdr.h ch3hdr2.h magic.input \
-	mgl-code mgl-in mgllex.l mglyac.y mmain.c sample.c subr.c \
+	mgl-code.inc mgl-in mgllex.l mglyac.y mmain.c sample.c subr.c \
 	scn1.l scn2.l sql1.y sql2.y sqltext.c
 
 # Chapter 1
@@ -66,7 +66,7 @@ ch3-05.pgm: ch3-05_parser.o ch3-05.yy.o | ch3-05_parser.h
 mgl: subr.o mglyac_parser.o mgllex.yy.o
 	${CC} ${CFLAGS} -o $@ $^ ${LIBS}
 
-subr.o: subr.c | mglyac_parser.h mgl-code
+subr.o: subr.c | mglyac_parser.h mgl-code.inc
 
 # chapter 5
 

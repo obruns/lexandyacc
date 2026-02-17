@@ -15,7 +15,7 @@
 #include <string.h>
 #include <time.h>
 #include "mglyac_parser.h"
-#include "mgl-code"              /* contains definitions of 
+#include "mgl-code.inc"          /* contains definitions of
 				  * skeleton file to be built */
 
 #include "subr.h"
