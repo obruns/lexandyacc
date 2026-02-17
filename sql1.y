@@ -122,6 +122,9 @@ column_commalist:
 	|	column_commalist ',' column
 	;
 
+sql:	view_def
+	;
+
 view_def:
 		CREATE VIEW table opt_column_commalist
 		AS query_spec opt_with_check_option
