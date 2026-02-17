@@ -16,7 +16,7 @@ struct symtab symtab[NSYMS];
 %token <dval> NUMBER
 %left '-' '+'
 %left '*' '/'
-%nonassoc UMINUS
+%precedence UMINUS
 
 %type <dval> expression
 %%

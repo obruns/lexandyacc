@@ -23,7 +23,7 @@ int yylex();
 %left <subtok> COMPARISON /* = <> < > <= >= */
 %left '+' '-'
 %left '*' '/'
-%nonassoc UMINUS
+%precedence UMINUS
 
 	/* literal keyword tokens */
 
@@ -57,7 +57,7 @@ schema:
 	;
 
 opt_schema_element_list:
-		/* empty */
+		%empty
 	|	schema_element_list
 	;
 
@@ -91,7 +91,7 @@ column_def:
 	;
 
 column_def_opt_list:
-		/* empty */
+		%empty
 	|	column_def_opt_list column_def_opt
 	;
 
@@ -128,12 +128,12 @@ view_def:
 	;
 	
 opt_with_check_option:
-		/* empty */
+		%empty
 	|	WITH CHECK OPTION
 	;
 
 opt_column_commalist:
-		/* empty */
+		%empty
 	|	'(' column_commalist ')'
 	;
 
@@ -143,7 +143,7 @@ privilege_def:
 	;
 
 opt_with_grant_option:
-		/* empty */
+		%empty
 	|	WITH GRANT OPTION
 	;
 
@@ -190,7 +190,7 @@ module_def:
 	;
 
 opt_module:
-		/* empty */
+		%empty
 	|	module
 	;
 
@@ -204,7 +204,7 @@ lang:
 	;
 
 opt_cursor_def_list:
-		/* empty */
+		%empty
 	|	cursor_def_list
 	;
 
@@ -218,7 +218,7 @@ cursor_def:
 	;
 
 opt_order_by_clause:
-		/* empty */
+		%empty
 	|	ORDER BY ordering_spec_commalist
 	;
 
@@ -233,7 +233,7 @@ ordering_spec:
 	;
 
 opt_asc_desc:
-		/* empty */
+		%empty
 	|	ASC
 	|	DESC
 	;
@@ -336,7 +336,7 @@ select_statement:
 	;
 
 opt_all_distinct:
-		/* empty */
+		%empty
 	|	ALL
 	|	DISTINCT
 	;
@@ -346,7 +346,7 @@ update_statement_positioned:
 		WHERE CURRENT OF cursor
 	;
 
-assignment_commalist:
+assignment_commalist: %empty
 	|	assignment
 	|	assignment_commalist ',' assignment
 	;
@@ -370,7 +370,7 @@ target:
 	;
 
 opt_where_clause:
-		/* empty */
+		%empty
 	|	where_clause
 	;
 
@@ -424,7 +424,7 @@ where_clause:
 	;
 
 opt_group_by_clause:
-		/* empty */
+		%empty
 	|	GROUP BY column_ref_commalist
 	;
 
@@ -434,13 +434,13 @@ column_ref_commalist:
 	;
 
 opt_having_clause:
-		/* empty */
+		%empty
 	|	HAVING search_condition
 	;
 
 	/* search conditions */
 
-search_condition:
+search_condition: %empty
 	|	search_condition OR search_condition
 	|	search_condition AND search_condition
 	|	NOT search_condition
@@ -474,7 +474,7 @@ like_predicate:
 	;
 
 opt_escape:
-		/* empty */
+		%empty
 	|	ESCAPE atom
 	;
 

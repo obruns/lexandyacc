@@ -6,7 +6,7 @@ int yylex();
   /* specify precedence explicitly */
 %left '-' '+'
 %left '*' '/'
-%nonassoc UMINUS
+%precedence UMINUS
 
 %%
 

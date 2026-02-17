@@ -15,7 +15,7 @@ double vbltable[26];
 %token <dval> NUMBER
 %left '-' '+'
 %left '*' '/'
-%nonassoc UMINUS
+%precedence UMINUS
 
   /* sets the type for non-terminals which otherwise need no declaration */
 %type <dval> expression

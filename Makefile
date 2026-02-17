@@ -48,7 +48,7 @@ progs.tar:
 	${LEX} --c++ --outfile $*.yy.cpp $<
 
 %.tab.c %.tab.h: %.y
-	${YACC} -Werror -d $<
+	${YACC} --language=c --report=all -Wall -Werror -Wno-error=precedence -d $<
 
 %.pgm: %.tab.o %.yy.o | %.tab.h
 	${CC} ${CFLAGS} -o $@ $^ ${LIBS}

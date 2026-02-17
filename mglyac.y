@@ -52,7 +52,7 @@ screen_terminator: END id { end_screen($2); }
 screen_contents: titles lines
                ;
 
-titles: /* empty */
+titles:  %empty
       | titles title
       ;
 
@@ -70,7 +70,7 @@ line: ITEM qstring command ACTION action attribute
           }
         ;
         
-command: /* empty */ { cmd_str = strdup(""); }
+command:  %empty { cmd_str = strdup(""); }
        | COMMAND id  { cmd_str = $2; }
         ;
 
@@ -90,7 +90,7 @@ action: EXECUTE qstring
       | IGNORE { $$ = IGNORE; }
       ;
         
-attribute: /* empty */     { $$ = VISIBLE; }
+attribute:  %empty     { $$ = VISIBLE; }
          | ATTRIBUTE VISIBLE { $$ = VISIBLE; }
          | ATTRIBUTE INVISIBLE { $$ = INVISIBLE; }
          ;
