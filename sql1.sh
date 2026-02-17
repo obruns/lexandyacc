@@ -73,6 +73,12 @@ GROUP BY supplier
 HAVING COUNT(*) >= 3;
 EOF
 
+# page 137
+./sql1 <<EOF
+SELECT age FROM p WHERE p.age BETWEEN 21 AND 65;
+SELECT age FROM p WHERE p.age >= 21 AND p.age <= 65;
+EOF
+
 # page 140
 ./sql1 <<EOF
 FETCH foo INTO
