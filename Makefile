@@ -34,28 +34,7 @@ progs.tar:
 	scn1.l scn2.l sql1.y sql2.y sqltext.c
 
 # Chapter 1
-
-ch1-05.pgm: ch1-05l.o ch1-05y.tab.o
-	${CC} ${CFLAGS} -o ch1-05.pgm ch1-05l.o ch1-05y.tab.o ${LIBS}
-
-ch1-05l.c:	ch1-05.l
-	${LEX} --outfile=$*.c ch1-05.l
-
-ch1-05l.o:	ch1-05l.c ch1-05y.tab.h
-
-ch1-05y.tab.h ch1-05y.tab.c:	ch1-05.y
-	${YACC} --file-prefix=ch1-05y -d ch1-05.y
-
-ch1-06.pgm: ch1-06l.o ch1-06y.tab.o
-	${CC} ${CFLAGS} -o ch1-06.pgm ch1-06l.o ch1-06y.tab.o ${LIBS}
-
-ch1-06l.c:	ch1-06.l
-	${LEX} --outfile=$*.c ch1-06.l
-
-ch1-06l.o:	ch1-06l.c ch1-06y.tab.h
-
-ch1-06y.tab.h ch1-06y.tab.c:	ch1-06.y
-	${YACC} --file-prefix=ch1-06y -d ch1-06.y
+#	implied by the other rules
 
 # Chapter 2
 #	all use single lex source files
